@@ -1,26 +1,33 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&family=Roboto:wght@100;300;400;500;700;900&family=Space+Mono&display=swap');
+:root {
+    --text-color: rgb(255,255,255);
+    --showcase-text-color: rgb(200,200,200);
+    --accent-color: rgb(130, 0, 130);    
+}
 
 * {
     font-family: 'Poppins', sans-serif;
-    color: rgb(255, 255, 255);
+    color: var(--text-color);
     margin: 0;
     padding: 0;
 }
 
+
 html {
-    background-color: gray;
+    background-color: rgb(50, 50, 50);
     width: 100%;
     overflow-x: hidden;
 }
 
 header {
-    height: 8vh;
+    height: 8%;
     padding: 10px;
-    background-color: rgb(100, 100, 100);
+    background-color: rgb(50, 0, 100);
     position: sticky;
 }
 header i {
     color: skyblue;
+    margin-right: 5px;
 }
 header h1 {
     font-size: 2.5rem;
@@ -30,6 +37,18 @@ header h1 {
 .main h1 {
     text-align: center;
     font-size: 3rem;
+    overflow: hidden;
+}
+.main h1::after {
+    content: '';
+    background-color: var(--accent-color);
+    display: block;
+    height: 1.5px;
+    width: 80%;
+    position: relative;
+    bottom: 0;
+    margin-left: auto;
+    margin-right: auto;
 }
 .portfolio .description {
     text-align: justify;
@@ -41,7 +60,9 @@ header h1 {
     padding: 10px;
     display: flex;
     flex-flow: column;
-    background-color: rgb(184, 182, 182);
+    background-color: rgb(70, 70, 90);
+    border-radius: 10px;
+    border: .5px solid var(--accent-color);
 }
 .portfolio .showcase .container {
     display: grid;
@@ -52,22 +73,25 @@ header h1 {
 }
 .portfolio .showcase .container::after {
     content: '';
-    background-color: black;
-    height: 1px;
+    background-color: var(--accent-color);
+    height: 1.5px;
     width: 90%;
     position: relative;
     bottom: -5px;
     margin-left: auto;
     margin-right: auto;
 }
+.portfolio .showcase .container:last-child:after {
+    display: none;
+}
 .container h3 {
-    color: rgb(70, 70, 70);
+    color: var(--showcase-text-color);
     font-size: 1.7rem;
     grid-row: 1 / 2;
     grid-column: 1 / 3;
 }
 .container p {
-    color: rgb(70, 70, 70);
+    color: var(--showcase-text-color);
     grid-row: 2 / 3;
     grid-column: 1 / 2;
 }
@@ -75,4 +99,25 @@ header h1 {
     grid-row: 2 / 3;
     grid-column: 2 / 3;
     width: 100%;
+}
+
+@media screen and (max-width: 1000px) {
+    .showcase .container {
+        grid-template-rows: 1fr 3fr 5fr;
+        grid-template-columns: 1fr .5fr;
+    }
+    .container h3 {
+        grid-row: 1 / 2;
+        grid-column: 1 / 3;
+    }
+    .container p {
+        grid-row: 2 / 3;
+        grid-column: 1 / 3;
+    }
+    .container video {
+        grid-row: 3 / 4;
+        grid-column: 1 / 3;
+        width: 80%;
+        margin: auto;
+    }
 }
